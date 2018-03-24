@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/page-title/page-title.html">
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view1">
@@ -23,11 +24,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
+    <iron-ajax
+      auto
+      url="src/index.json"
+      handle-as="json"
+      last-response="{{response}}">
+    </iron-ajax>
+
     <div class="card">
-      <iron-image src="https://d1re4mvb3lawey.cloudfront.net/pg1017/cover.jpg"></iron-image>
-      <h1>The Soul of Man</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+        <iron-image src="https://d1re4mvb3lawey.cloudfront.net/pg1017/cover.jpg"></iron-image>
+        <template is="dom-repeat" items="{{response}}">
+          <page-title page-title="{{item.title}}"></page-title>
+          <h1>{{item.title}}</h1>
+          <p>ISBN: {{item.isbn}}</p>
+          <p>Contributors: {{item.contributors}}</p>
+          <p>Date: {{item.date}}</p>
+        </template>
     </div>
   </template>
 
