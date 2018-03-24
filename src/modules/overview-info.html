@@ -1,0 +1,27 @@
+<link rel="import"  href="https://polygit.org/components/polymer/polymer-element.html">
+<dom-module id="overview-info">
+
+  <template>
+    <iron-ajax
+      auto
+      url="src/index.json"
+      handle-as="json"
+      last-response="{{response}}">
+    </iron-ajax>
+    <template is="dom-repeat" items="{{response}}">
+        <page-title page-title="{{item.title}}"></page-title>
+        <h1>{{item.title}}</h1>
+        <p>ISBN: {{item.isbn}}</p>
+        <p>Contributors: {{item.contributors}}</p>
+        <p>Date: {{item.date}}</p>
+    </template>
+  </template>
+
+  <script>
+    class overviewInfo extends Polymer.Element {
+      static get is() { return  'overview-info'; }
+    }
+    window.customElements.define(overviewInfo.is, overviewInfo);
+  </script>
+
+</dom-module>

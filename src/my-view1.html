@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="modules/overview-info.html">
 
 <dom-module id="my-view1">
   <template>
@@ -24,22 +25,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <iron-ajax
-      auto
-      url="src/index.json"
-      handle-as="json"
-      last-response="{{response}}">
-    </iron-ajax>
-
     <div class="card">
         <iron-image src="https://d1re4mvb3lawey.cloudfront.net/pg1017/cover.jpg"></iron-image>
-        <template is="dom-repeat" items="{{response}}">
-          <page-title page-title="{{item.title}}"></page-title>
-          <h1>{{item.title}}</h1>
-          <p>ISBN: {{item.isbn}}</p>
-          <p>Contributors: {{item.contributors}}</p>
-          <p>Date: {{item.date}}</p>
-        </template>
+        <overview-info></overview-info>
     </div>
   </template>
 
